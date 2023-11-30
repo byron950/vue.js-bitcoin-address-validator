@@ -16,10 +16,10 @@
   <address-box></address-box>
   <the-output-field>
     <div v-if="addressFinal === 'valid'">
-      <p>address is valid</p>
+      <p id="valid">address is valid</p>
     </div>
     <div v-else-if="addressFinal === 'invalid'">
-      <p>address is invalid</p>
+      <p id="invalid">address is invalid</p>
     </div>
     <div v-else></div>
   </the-output-field>
@@ -69,3 +69,17 @@ export default {
   },
 };
 </script> 
+
+<style scoped>
+#valid {
+  text-align: center;
+  font: inherit;
+  color: green;
+}
+
+#invalid {
+  text-align: center;
+  font: inherit;
+  color: red;
+}
+</style>
