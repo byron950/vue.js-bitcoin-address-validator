@@ -43,6 +43,12 @@ div {
 }
 
 dialog {
+  position: fixed;
+  top: 20vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  border-radius: 12px;
   border: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   padding: 0;
@@ -51,7 +57,7 @@ dialog {
 }
 
 header {
-  background-color: #3a0061;
+  background-color: #F2A900;
   color: white;
   width: 100%;
   padding: 1rem;
