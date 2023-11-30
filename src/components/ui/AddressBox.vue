@@ -24,25 +24,24 @@ export default {
 .input-group {
   display: flex;
   justify-content: center;
-  align-items: center; /* This will vertically align your label and input */
-  gap: 1rem; /* This adds space between your label and input */
+  align-items: center; 
+  gap: 1rem; 
   margin-top: 20px;
 }
 
 label {
-  /* Add any specific styles for your label here */
-  white-space: nowrap; /* Prevents the label from wrapping */
+  
+  white-space: nowrap;
 }
 
 input[type="text"] {
-  /* Add any specific styles for your input here */
-  flex-grow: 0.2; /* Allows the input to take up available space */
+  flex-grow: 0.2; 
 }
 
-/* Add media query for responsive design if necessary */
+
 @media (max-width: 600px) {
   .input-group {
-    flex-direction: column; /* Stack them on smaller screens */
+    flex-direction: column; 
   }
 }
 </style>

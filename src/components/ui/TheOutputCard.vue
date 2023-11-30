@@ -31,10 +31,12 @@ export default {
 
 <style scoped>
 .table {
-  width: 100%;
-  background-color: #1a1a1a;
-  color: white;
+  width: 80%;
+  margin: auto;
+  background-color: white;
+  color: #000;
   border-collapse: collapse;
+  padding: 2rem;
 }
 
 .table-row {
@@ -47,7 +49,8 @@ export default {
 
 .cell {
   padding: 10px;
-  flex: 1; /* Adjust flex values as needed to match your layout */
+  flex: 1 1 0px; 
+  text-align: center;
   border-bottom: 1px solid #333;
 }
 
@@ -65,10 +68,9 @@ export default {
   background-color: red;
 }
 
-/* Additional styling for responsiveness and aesthetics */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .cell {
-    /* Responsive adjustments */
-  }
-}
+  
+  } */
+
 </style>
