@@ -5,63 +5,89 @@
     @close="confirmError"
   >
     <template #default>
-      <p>
-        Please enter an address. Blank input is not accepted.
-      </p>
+      <p>Please enter an address. Blank input is not accepted.</p>
     </template>
     <template #actions>
       <the-button @click="confirmError" buttonText="OK"></the-button>
     </template>
   </the-error-message>
   <address-box></address-box>
-  <the-output-field>
-    <div v-if="addressFinal === 'valid'">
-      <p id="valid">address is valid</p>
-    </div>
-    <div v-else-if="addressFinal === 'invalid'">
-      <p id="invalid">address is invalid</p>
-    </div>
-    <div v-else></div>
-  </the-output-field>
+  <the-output-card
+    v-if="buttonClicked"
+    :address="addressOutput"
+    :is-verified="addressVerified"
+    :valid="validAddress"
+    :type="addressType"
+  ></the-output-card>
 </template>
 
 <script>
-import TheOutputField from "../layout/TheOutputField.vue";
+//import TheOutputField from "../layout/TheOutputField.vue";
 import TheErrorMessage from "../ui/TheErrorMessage.vue";
+import TheOutputCard from "../ui/TheOutputCard.vue";
 
 export default {
   data() {
     return {
-      addressFinal: String,
+      buttonClicked: false,
       inputIsBlank: false,
+      addressOutput: "",
+      validAddress: false,
+      addressVerified: false,
+      addressType: "",
     };
   },
-  components: { TheOutputField, TheErrorMessage },
+  components: { TheErrorMessage, TheOutputCard },
   methods: {
     checkAddress(address) {
       address = address.trim();
-      if(
-        address === ''
-      ) {
+      if (address === "") {
         this.inputIsBlank = true;
         return;
       }
       const mempoolUrl = `https://mempool.space/api/address/${address}`;
       fetch(mempoolUrl)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
         .then((data) => {
-          console.log(data);
-          this.addressFinal = "valid";
-          return address;
+          if (typeof data === "object" && data != null) {
+            this.validAddress = true;
+            console.log("address[0 = ]", address[0]);
+            if (address[0] === '1') {
+              this.addressType = "P2PKH (Legacy)";
+            } else if (address[0] === '3') {
+              this.addressType = "P2SH (Nested Segwit)";
+            } else if (address[0] === 'b' && address[3] === 'q') {
+              this.addressType = "P2WPKH (Native Segwit)";
+            } else {
+              this.addressType = "P2TR (Taproot)";
+            }
+          } else {
+            this.validAddress = false;
+            this.addressType = '-';
+            return;
+          }
+          this.addressOutput = address;
+          this.addressVerified = true;
+          this.buttonClicked = true;
         })
         .catch((error) => {
-          console.error("Error fetching data: ", error);
-          this.addressFinal = "invalid";
+          this.addressType = '-';
+          this.addressOutput = address;
+          this.validAddress = false;
+          this.addressVerified = true;
+          this.buttonClicked = true;
+          return error;
         });
     },
+
     confirmError() {
       this.inputIsBlank = false;
-    }
+    },
   },
   provide() {
     return {
@@ -71,16 +97,3 @@ export default {
 };
 </script> 
 
-<style scoped>
-#valid {
-  text-align: center;
-  font: inherit;
-  color: green;
-}
-
-#invalid {
-  text-align: center;
-  font: inherit;
-  color: red;
-}
-</style>
