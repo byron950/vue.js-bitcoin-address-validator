@@ -7,8 +7,7 @@
     <template #default>
       <p>Input is invald</p>
       <p>
-        Please check the address input field and make sure that you have
-        supplied an address, blank inputs are not accepted.
+        Please enter an address. Blank input is not accepted.
       </p>
     </template>
     <template #actions>
