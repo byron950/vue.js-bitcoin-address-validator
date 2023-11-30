@@ -44,7 +44,7 @@ div {
 
 dialog {
   position: fixed;
-  top: 20vh;
+  top: 40vh;
   left: 10%;
   width: 80%;
   z-index: 100;
@@ -80,8 +80,11 @@ menu {
 
 @media (min-width: 768px) {
   dialog {
-    left: calc(50% - 20rem);
-    width: 40rem;
+    position: fixed; 
+    left: 50%;
+    top: 50%;
+    width: 30rem;
+    transform: translate(-50%, -50%);
   }
 }
 </style>

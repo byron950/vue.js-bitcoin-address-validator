@@ -1,11 +1,10 @@
 <template>
   <the-error-message
     v-if="inputIsBlank"
-    title="Blank Input"
+    title="Invalid Input"
     @close="confirmError"
   >
     <template #default>
-      <p>Input is invald</p>
       <p>
         Please enter an address. Blank input is not accepted.
       </p>
