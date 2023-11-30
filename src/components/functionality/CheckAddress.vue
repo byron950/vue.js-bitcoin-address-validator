@@ -57,13 +57,13 @@ export default {
             this.validAddress = true;
             console.log("address[0 = ]", address[0]);
             if (address[0] === '1') {
-              this.addressType = "P2PKH (Legacy)";
+              this.addressType = "P2PKH (Legacy) | Pay To Public Key Hash";
             } else if (address[0] === '3') {
-              this.addressType = "P2SH (Nested Segwit)";
+              this.addressType = "P2SH (Nested Segwit) | Pay To Script Hash";
             } else if (address[0] === 'b' && address[3] === 'q') {
-              this.addressType = "P2WPKH (Native Segwit)";
+              this.addressType = "P2WPKH (Native Segwit) | Pay To Witness Public Key Hash";
             } else {
-              this.addressType = "P2TR (Taproot)";
+              this.addressType = "P2TR (Taproot) | Pay To Taproot";
             }
           } else {
             this.validAddress = false;
