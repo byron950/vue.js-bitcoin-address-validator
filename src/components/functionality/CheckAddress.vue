@@ -39,8 +39,9 @@ export default {
   components: { TheOutputField, TheErrorMessage },
   methods: {
     checkAddress(address) {
+      address = address.trim();
       if(
-        address.trim() === ''
+        address === ''
       ) {
         this.inputIsBlank = true;
         return;
