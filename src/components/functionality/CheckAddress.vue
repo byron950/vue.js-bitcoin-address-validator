@@ -42,6 +42,7 @@ export default {
       address = address.trim();
       if (address === "") {
         this.inputIsBlank = true;
+        this.addressVerified = false;
         return;
       }
       const mempoolUrl = `https://mempool.space/api/address/${address}`;
