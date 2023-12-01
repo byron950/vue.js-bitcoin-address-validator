@@ -13,7 +13,7 @@
   </the-error-message>
   <address-box></address-box>
   <the-output-card
-    v-if="inputIsBlank"
+    v-if="addressVerified"
     :address="addressOutput"
     :is-verified="addressVerified"
     :valid="validAddress"
