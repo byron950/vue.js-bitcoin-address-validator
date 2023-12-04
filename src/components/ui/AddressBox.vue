@@ -38,7 +38,6 @@ input[type="text"] {
   flex-grow: 0.2; 
 }
 
-
 @media (max-width: 600px) {
   .input-group {
     flex-direction: column; 
