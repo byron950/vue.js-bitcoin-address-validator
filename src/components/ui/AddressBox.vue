@@ -4,7 +4,7 @@
     <input type="text" placeholder="BTC Address" ref="btcAddress"/>
   </div>
   <div class="button-submit">
-    <the-button buttonText="Check Address" @click="submitAddress"></the-button>
+    <the-button buttonText="Validate Address" @click="submitAddress"></the-button>
   </div>
 </template>
 
